@@ -37,11 +37,17 @@ Proyek ini dibangun menggunakan:
 ## 📂 Struktur Proyek
 
 energy-predictor/
+
 ├── data/ # Dataset mentah dan hasil preprocessing
+
 ├── notebooks/ # Jupyter notebooks untuk eksplorasi dan modeling
+
 ├── models/ # Model machine learning yang disimpan
+
 ├── utils/ # Fungsi bantu (preprocessing, evaluasi, dsb)
+
 ├── requirements.txt # Dependensi proyek
+
 ├── README.md # Dokumentasi proyek
 
 
@@ -49,21 +55,68 @@ energy-predictor/
 
 ## 🚀 Cara Menjalankan
 
-1. Clone repositori:
+### 1. Clone repositori:
    ```bash
    git clone https://github.com/username/energy-predictor.git
    cd energy-predictor
    ```
 
 
-### Install dependencies:
+### 2 Install dependencies:
 ```
 pip install -r requirements.txt
 ```
-### Jalankan notebook:
+### 3 Jalankan notebook:
 ````
 jupyter notebook
 ````
 
+### 4. 📓 Buka [notebooks/energy_prediction.ipynb](notebooks/energy_prediction.ipynb) untuk memulai eksplorasi dan pelatihan model.
+
+
+## Langkah-Langkah
+
+
+### pertama tama buka di [vscode](https://code.visualstudio.com/) atau [jupyter.org](https://jupyter.org/try)
+
+### 1. Tampilkan data data dari file untuk dibaca
+#### Code 
+```
+import pandas as pd
+# Baca file CSV
+df = pd.read_csv("energydata_complete.csv")
+# Tampilkan data awal
+df.head()
+```
+#### Output
+![App Screenshot](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/1.png)
+
+### 2 Langkah ke dua periksa apakah ada nilai kosong ?
+
+##### 1. Berdasarkan output yang diberikan, berikut adalah langkah-langkah yang dilakukan:
+
+##### Menghapus Kolom yang Tidak Diperlukan:
+```
+df = df.drop(['date', 'lights'], axis=1)
+```
+
+- ##### Kolom 'date' dan 'lights' dihapus dari DataFrame karena dianggap tidak diperlukan untuk analisis lebih lanjut.
+##### 2. Memeriksa Nilai Kosong (Missing Values):
+```
+df.isnull().sum()
+```
+
+#### Code
+```
+# Drop kolom yang tidak diperlukan
+df = df.drop(['date', 'lights'], axis=1)
+
+
+# Cek apakah ada nilai kosong
+df.isnull().sum()
+```
+
+#### Output
+![App Screenshot](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/2.png)
 
 
