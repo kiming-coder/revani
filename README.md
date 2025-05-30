@@ -63,11 +63,11 @@ energy-predictor/
 
 
 ### 2 Install dependencies:
-```
+```python
 pip install -r requirements.txt
 ```
 ### 3 Jalankan notebook:
-````
+````python
 jupyter notebook
 ````
 
@@ -81,7 +81,7 @@ jupyter notebook
 
 ### 1. Tampilkan data data dari file untuk dibaca
 #### Code 
-```
+```python
 import pandas as pd
 # Baca file CSV
 df = pd.read_csv("energydata_complete.csv")
@@ -102,12 +102,12 @@ df = df.drop(['date', 'lights'], axis=1)
 
 - ##### Kolom 'date' dan 'lights' dihapus dari DataFrame karena dianggap tidak diperlukan untuk analisis lebih lanjut.
 ##### 2. Memeriksa Nilai Kosong (Missing Values):
-```
+```python
 df.isnull().sum()
 ```
 
 #### Code
-```
+```python
 # Drop kolom yang tidak diperlukan
 df = df.drop(['date', 'lights'], axis=1)
 
