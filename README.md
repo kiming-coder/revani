@@ -119,4 +119,11 @@ df.isnull().sum()
 #### Output
 ![App Screenshot](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/2.png)
 
+### Langkah-Langkah 3 Analisis Regresi Linear untuk Prediksi Konsumsi Energi
 
+```python
+from sklearn.preprocessing import MinMaxScaler  # Seharusnya MinMaxScaler, bukan HizhiosScaler (typo)
+
+scaler = MinMaxScaler()
+normalized_df = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
+normalized_df.head()
