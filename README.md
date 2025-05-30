@@ -59,7 +59,6 @@ energy-predictor/
 pip install -r requirements.txt
 
 ### Jalankan notebook:
-```bash
 jupyter notebook
 
 
