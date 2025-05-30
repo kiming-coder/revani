@@ -71,7 +71,8 @@ pip install -r requirements.txt
 jupyter notebook
 ````
 
-### 4. 📓 Buka [notebooks/energy_prediction.ipynb](notebooks/energy_prediction.ipynb) untuk memulai eksplorasi dan pelatihan model.
+### 4. 📓 Buka `[notebooks/energy_prediction.ipynb]`
+untuk memulai eksplorasi dan pelatihan model.
 
 
 ## Langkah-Langkah
@@ -119,7 +120,7 @@ df.isnull().sum()
 #### Output
 ![App Screenshot](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/2.png)
 
-### Langkah-Langkah 3 Analisis Regresi Linear untuk Prediksi Konsumsi Energi
+###  3 Analisis Regresi Linear untuk Prediksi Konsumsi Energi
 
 ```python
 from sklearn.preprocessing import MinMaxScaler  # Seharusnya MinMaxScaler, bukan HizhiosScaler (typo)
@@ -127,3 +128,106 @@ from sklearn.preprocessing import MinMaxScaler  # Seharusnya MinMaxScaler, bukan
 scaler = MinMaxScaler()
 normalized_df = pd.DataFrame(scaler.fit_transform(df), columns=df.columns)
 normalized_df.head()
+```
+#### Output 
+![App Screenshot](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/3.png)
+- Tujuan: Menyamakan skala fitur (0-1) untuk meningkatkan performa model.
+- Output: DataFrame dengan nilai ternormalisasi (contoh: `Appliances=0.046729, T1=0.32735)`.
+
+### 4. Pisahkan fitur (X) dan target (y)
+X = normalized_df.drop('Appliances', axis=1)
+y = normalized_df['Appliances']
+
+### Bagi data menjadi train (80%) dan test (20%)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+#### Output
+![App Screenshot](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/4.png)
+- Target: Variabel `Appliances` (konsumsi energi).
+- Random State: 42 untuk reproduktibilitas.
+
+### 5. Pelatihan Model Regresi Linear
+```python
+from sklearn.linear_model import LinearRegression
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+```
+- Output: Model terlatih `(LinearRegression())`.
+
+### 6. Evaluasi Model
+```python
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import numpy as np
+
+y_pred = lr_model.predict(X_test)
+
+print("MAE:", mean_absolute_error(y_test, y_pred))
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
+print("R² Score:", r2_score(y_test, y_pred))
+```
+#### Output
+![woi jngn asal copas ya dek](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/5.png)
+
+- Hasil:
+  - MAE: 0.0499 (rata-rata error absolut)
+  - R²: 0.146 (korelasi lemah, model kurang baik).
+ 
+
+### 7. Visualisasi Prediksi vs Aktual
+```python
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 5))
+plt.plot(y_test.values[:100], label="Actual")
+plt.plot(y_pred[:100], label="Predicted")
+plt.legend()
+plt.title("Prediksi vs Aktual Konsumsi Energi")
+plt.xlabel("Sample")
+plt.ylabel("Konsumsi Energi (Normalisasi)")
+plt.show()
+```
+#### Output
+![woi jangan asal jiplak orang punya revani](https://raw.githubusercontent.com/kiming-coder/revani/refs/heads/main/6.png)
+- Interpretasi: Prediksi (biru) tidak mengikuti pola aktual (oranye) dengan baik, sesuai nilai R² rendah.
+
+
+## 📦 Dataset
+### Dataset berisi data konsumsi energi rumah tangga berdasarkan:
+- ###### Tanggal dan waktu
+- ###### Suhu dalam dan luar ruangan
+- ###### Kelembaban
+- ###### Intensitas cahaya alami
+- ###### Kegiatan di beberapa ruangan (opsional)
+
+## 🧪 Evaluasi Model
+### Model yang dibangun diuji secara ketat dengan metrik:
+- ###### 📉 Mean Absolute Error (MAE)
+- ###### 📉 Root Mean Square Error (RMSE)
+- ###### 📈 R² Score
+Tujuan evaluasi ini adalah untuk mengetahui seberapa akurat model memprediksi nilai konsumsi energi dibandingkan data sebenarnya.
+
+## 📌 Inspirasi Proyek
+### Proyek ini terinspirasi dari:
+- ###### Kebutuhan untuk meningkatkan efisiensi energi di rumah tangga
+- ###### Penerapan nyata data science untuk keberlanjutan
+- ###### Konsep rumah pintar (smart home) dan manajemen energi berbasis AI
+
+## 🧑‍💻 Pembuat
+
+
+```quote
+Proyek ini dibuat oleh Revani Aprilia (23283030)
+"Bangun masa depan rumah yang hemat energi, dimulai dari data 
+```
+
+
+
+
+
+
+
+
+
+
