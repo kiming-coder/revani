@@ -1,4 +1,6 @@
-# 🔋 Energy Predictor  
+# 🔋 Energy Predictor  | Prediksi Konsumsi Energi Rumah
+![image](https://github.com/user-attachments/assets/d92c210e-4ae0-476e-a37a-11d62b0c26be)
+
 ## _Smart Home, Smarter Energy_
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)](https://www.python.org/)
