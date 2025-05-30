@@ -53,14 +53,17 @@ energy-predictor/
    ```bash
    git clone https://github.com/username/energy-predictor.git
    cd energy-predictor
+   ```
 
 
 ### Install dependencies:
+```
 pip install -r requirements.txt
-
+```
 ### Jalankan notebook:
+````
 jupyter notebook
-
+````
 
 
 
